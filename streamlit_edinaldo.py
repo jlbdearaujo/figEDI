@@ -11,7 +11,6 @@ from fpdf import FPDF
 import scipy
 from scipy import stats
 from sklearn.neighbors import KernelDensity
-import matplotlib as mpl
 import matplotlib.gridspec as grid_spec
 
 
