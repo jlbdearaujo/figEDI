@@ -8,4 +8,5 @@ scipy==1.5.4
 sklearn.neighbors
 matplotlib==3.4.1
 altair
+Python >= 3.7
 
