@@ -1,13 +1,7 @@
 pybase64
-os
-json
-pickle
-uuid
-re
 matplotlig.pyplot
 tempfile
 fpdf
-altair
 streamlit
 numpy
 matplotlib.patches
@@ -15,6 +9,5 @@ matplotlig.path
 pandas
 scipy
 sklearn.neighbors
-streamlit
 matplotlib
 matplotlib.gridspec
