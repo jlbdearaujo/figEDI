@@ -82,14 +82,14 @@ if paginaseleciona=='FIG6':
 
     c1aux=EDIALL[EDIALL['CLUSTER']==1].copy()
     data_to_plot=[c1aux[c1aux['a']==0.5]['expP'].values,c1aux[c1aux['a']==0.55]['expP'].values,c1aux[c1aux['a']==0.6]['expP'].values,c1aux[c1aux['a']==0.65]['expP'].values]
-   
+    csfont = {'fontname':'Times New Roman'}
     fig,ax=plt.subplots(figsize=(10,7))
     x1 = [1,2,3,4]
     squad = [0.50,0.55,0.60,0.65]
-    plt.ylabel(r'$\beta$',fontsize=40)
-    plt.yticks(fontsize=40)
-    plt.xticks(x1,squad,fontsize=40)
-    plt.xlabel(r'$\alpha$',fontsize=40)
+    plt.ylabel(r'$\beta$',fontsize=40,**csfont)
+    plt.yticks(fontsize=40,**csfont)
+    plt.xticks(x1,squad,fontsize=40,**csfont)
+    plt.xlabel(r'$\alpha$',fontsize=40,**csfont)
     ax.xaxis.set_tick_params(width=3)
     ax.yaxis.set_tick_params(width=3)
     for axis in ['top','bottom','left','right']:
