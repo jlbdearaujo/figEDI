@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 
 
-EDIALL=pd.read_csv('EDIALL_old.csv',sep=';')
+
 
 st.sidebar.title('FIGURAS DO CLAÚDIO LUCAS')
 st.sidebar.write('Jorge Luiz')
@@ -33,22 +33,7 @@ plt.rc('font',**{'family':'serif','serif':['Times']})
 plt.rc('font',**{'family':'serif','serif':['Times']})
 plt.rc('text', usetex=True)
 
-EDIALL=EDIALL.astype({'CLUSTER':'int64'})
 
-EDIALL.drop('Unnamed: 0',axis=1,inplace=True)
-alfas=EDIALL['α'].value_counts().sort_index().index.values.copy()
-
-dfaux=EDIALL[(EDIALL['k']>500)&(EDIALL['γ']>50)].copy()
-
-ccPL=[];ccEXP=[];apl=[];aexp=[]
-for a in alfas:
-    c1=len(dfaux[(dfaux['CLUSTER']==1)&(dfaux['α']==a)])
-    c0=len(dfaux[(dfaux['CLUSTER']==0)&(dfaux['α']==a)])
-    ct=c1+c0
-    ccEXP.append(c0/ct)
-    ccPL.append(c1/ct)
-    apl.append(a-(0.05/4))
-    aexp.append(a+(0.05/4))
 
 
 if corpl=='':
