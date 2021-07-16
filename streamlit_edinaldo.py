@@ -437,7 +437,7 @@ if paginaseleciona=='FIG6':
         ax.spines[axis].set_linewidth(3)
     #bp=plt.boxplot(data_to_plot,labels=squad)
     plt.plot([1,2,3,4],[10,20,30,40])
-    st.pyplot(fig)
+    #st.pyplot(fig)
 
     
     export_as_pdf = st.button("Se quiser fazer o download dessa figura")
