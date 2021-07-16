@@ -68,6 +68,116 @@ if paginaseleciona=='NENHUMA':
 
     st.write(" Por favor, selecione no menu ao lado a figura que queira editar e suas respectivas cores.")
 
+if paginaseleciona=='FIG3a':
+
+    st.title(paginaseleciona)
+    st.write(r'$\chi_{E}$')
+
+    st.write('Espere um pouco, a figura pode demorar a renderizar')
+
+
+    plt.rcParams.update({'font.size': 40})
+
+    data=EDIALL[(EDIALL['a']==0.5)|(EDIALL['a']==0.6)|(EDIALL['a']==0.7)|(EDIALL['a']==0.8)|(EDIALL['a']==0.9)|(EDIALL['a']==1.0)].copy()
+    countries = [x for x in np.unique(data[a'])]
+    #countries=[0.5]
+    colors = ['#0000ff', '#3300cc', '#660099', '#990066', '#cc0033','#cc0033']
+
+    gs = grid_spec.GridSpec(len(countries),1)
+    fig = plt.figure(figsize=(16,9))
+
+    i = 0
+    d0=data[data['CLUSTER']==0].copy()
+    d1=data[data['CLUSTER']==1].copy()
+    ax_objs = []
+    for country in countries:
+        country = countries[i]
+        
+        x = np.array(data[data['a'] == country].xE)
+        x_d = np.linspace(EDIALL.xE.min(),EDIALL.xE.max(), 1000)
+
+        kde = KernelDensity(bandwidth=10.0, kernel='gaussian')
+        kde.fit(x[:, None])
+
+        logprob = kde.score_samples(x_d[:, None])
+
+        # creating new axes object
+        ax_objs.append(fig.add_subplot(gs[i:i+1, 0:]))
+
+        # plotting the distribution
+        #ax_objs[-1].plot(x_d, np.exp(logprob),color="#f0f0f0",lw=2)
+        #ax_objs[-1].fill_between(x_d, np.exp(logprob), alpha=1,color=colors[i])
+        
+        #d0
+        x0=np.array(d0[d0['a'] == country].xE)
+        if (len(x0)!=0):
+            kde = KernelDensity(bandwidth=10.0, kernel='gaussian')
+            kde.fit(x0[:, None])
+            logprob = kde.score_samples(x_d[:, None])
+            ax_objs[-1].plot(x_d, np.exp(logprob)/np.exp(logprob).max(),color='black',alpha=trans,lw=2)
+            ax_objs[-1].fill_between(x_d, np.exp(logprob)/np.exp(logprob).max(), alpha=trans,color=coresC['EXP'])
+
+        #d1
+        x1=np.array(d1[d1['a'] == country].xE)
+        if (len(x1)!=0):
+            kde = KernelDensity(bandwidth=10.0, kernel='gaussian')
+            kde.fit(x1[:, None])
+            logprob = kde.score_samples(x_d[:, None])
+            ax_objs[-1].plot(x_d, np.exp(logprob)/np.exp(logprob).max(),color='orange',alpha=trans,lw=2)
+            ax_objs[-1].fill_between(x_d, np.exp(logprob)/np.exp(logprob).max(), alpha=trans,color=coresC['PL'])
+
+
+        # setting uniform x and y lims
+        ax_objs[-1].set_xlim(EDIALL.xE.min(),EDIALL.xE.max())
+        ax_objs[-1].set_ylim(0,1.0)
+
+        # make background transparent
+        rect = ax_objs[-1].patch
+        rect.set_alpha(0)
+
+        # remove borders, axis ticks, and labels
+        ax_objs[-1].set_yticklabels([])
+
+        if i == len(countries)-1:
+            ax_objs[-1].set_xlabel(r"$\chi_{E}$", fontsize=40,fontweight="bold")
+        else:
+            ax_objs[-1].set_xticklabels([])
+
+        spines = ["top","right","left","bottom"]
+        for s in spines:
+            ax_objs[-1].spines[s].set_visible(False)
+
+        #adj_country = country.replace(" ","\n")
+        ax_objs[-1].text(-0.02,0,country,fontsize=40,ha="right")
+
+
+        i += 1
+
+    gs.update(hspace=-0.1)
+
+    #fig.text(0.07,0.85,"Distribution of Aptitude Test Results from 18 – 24 year-olds",fontsize=20)
+
+    plt.tight_layout()
+    st.pyplot(fig)
+
+    
+    export_as_pdf = st.button("Se quiser fazer o download dessa figura")
+    
+
+    if export_as_pdf:
+        st.write('ESPERE UM POUCO, JÁ JÁ  O LINK SERÁ CRIADO')
+        pdf = FPDF(orientation = 'L', unit = 'in', format=(9,16))
+        pdf.add_page()
+        with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
+
+                plt.savefig(tmpfile.name,dpi=300,bbox_inches='tight')
+                pdf.image(tmpfile.name, 0, 0, 16, 9)
+                filename=pdf.output(dest="S").encode("latin-1")
+        html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
+        st.markdown(html, unsafe_allow_html=True)    
+    
+    
+    
 if paginaseleciona=='FIG4':
 
     st.title(paginaseleciona)
