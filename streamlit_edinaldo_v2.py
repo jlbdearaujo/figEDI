@@ -68,7 +68,88 @@ if paginaseleciona=='NENHUMA':
 
     st.write(" Por favor, selecione no menu ao lado a figura que queira editar e suas respectivas cores.")
 
+if paginaseleciona=='FIG4':
 
+    st.title(paginaseleciona)
+
+    st.write('OBS: O texto no eixo RELAXATION pode ser editado')
+
+    st.write('Espere um pouco, a figura pode demorar a renderizar')
+
+    ynames = ['k',r'$\gamma$',r'$\alpha$','TYPE OF RELAXATION']
+    ys=EDIALL[['k','g','a','CLUSTER']].iloc[:].values
+    ymins = ys.min(axis=0)
+    ymaxs = ys.max(axis=0)
+    dys = ymaxs - ymins
+    ymins -= dys * 0.05  # add 5% padding below and above
+    ymaxs += dys * 0.05
+
+    ymaxs[1], ymins[1] = ymins[1], ymaxs[1]  # reverse axis 1 to have less crossings
+    dys = ymaxs - ymins
+
+    # transform all data to be compatible with the main axis
+    zs = np.zeros_like(ys)
+    zs[:, 0] = ys[:, 0]
+    zs[:, 1:] = (ys[:, 1:] - ymins[1:]) / dys[1:] * dys[0] + ymins[0]
+
+    fig, host = plt.subplots(figsize=(14,7))
+
+    axes = [host] + [host.twinx() for i in range(ys.shape[1] - 1)]
+    for i, ax in enumerate(axes):
+        ax.set_ylim(ymins[i], ymaxs[i])
+        ax.spines['top'].set_visible(False)
+        ax.spines['bottom'].set_visible(False)
+        if ax != host:
+            ax.spines['left'].set_visible(False)
+            ax.yaxis.set_ticks_position('right')
+            ax.spines["right"].set_position(("axes", i / (ys.shape[1] - 1)))
+
+
+    host.set_xlim(0, ys.shape[1] - 1)
+    host.set_xticks(range(ys.shape[1]))
+    host.set_xticklabels(ynames, fontsize=30)
+    host.tick_params(axis='x', which='major', pad=7)
+    host.spines['right'].set_visible(False)
+    host.xaxis.tick_top()
+    
+    #host.set_title('Parallel Coordinates Plot — Iris', fontsize=18, pad=12)
+
+    colors = plt.cm.Pastel1.colors
+    legend_handles = [None for _ in ['PL','EXP']]
+    for j in range(ys.shape[0]):
+        # create bezier curves
+        verts = list(zip([x for x in np.linspace(0, len(ys) - 1, len(ys) * 3 - 2, endpoint=True)],
+                         np.repeat(zs[j, :], 3)[1:-1]))
+        codes = [Path.MOVETO] + [Path.CURVE4 for _ in range(len(verts) - 1)]
+        path = Path(verts, codes)
+        if EDIALL['CLUSTER'].values[j]==0:
+            patch = patches.PathPatch(path, facecolor='none', lw=1.0, alpha=0.1*trans,edgecolor=coresC['EXP'] )#EXP
+        else:
+            patch = patches.PathPatch(path, facecolor='none', lw=5.0, alpha=trans,edgecolor=coresC['PL'] )#PL
+        legend_handles[EDIALL['CLUSTER'].values[j]] = patch
+        host.add_patch(patch)
+    plt.tight_layout()
+    st.pyplot(fig)
+
+
+    export_as_pdf = st.button("Se quiser fazer o download dessa figura")
+
+    if export_as_pdf:
+        st.write('ESPERE UM POUCO, JÁ JÁ  O LINK SERÁ CRIADO')
+        pdf = FPDF(orientation = 'L', unit = 'in', format=(7,14))
+        pdf.add_page()
+        with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
+
+                plt.savefig(tmpfile.name,dpi=300)
+                pdf.image(tmpfile.name, 0, 0, 14, 7)
+                filename=pdf.output(dest="S").encode("latin-1")
+        html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
+        st.markdown(html, unsafe_allow_html=True)
+    
+    
+    
+    
+    
 
 if paginaseleciona=='FIG6':
 
