@@ -77,7 +77,7 @@ if paginaseleciona=='FIG6':
 
 
     c1aux=EDIALL[EDIALL['CLUSTER']==1].copy()
-    data_to_plot=[c1aux[c1aux['a']==0.5]['expP'].values,c1aux[c1aux['a']==0.55]['expP'].values,c1aux[c1aux['a']==0.6]['expP'].values,c1aux[c1aux['α']==0.65]['expP'].values]
+    data_to_plot=[c1aux[c1aux['a']==0.5]['expP'].values,c1aux[c1aux['a']==0.55]['expP'].values,c1aux[c1aux['a']==0.6]['expP'].values,c1aux[c1aux['a']==0.65]['expP'].values]
    
     fig,ax=plt.subplots(figsize=(10,7))
     x1 = [1,2,3,4]
