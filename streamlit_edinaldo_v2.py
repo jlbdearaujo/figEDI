@@ -86,10 +86,10 @@ if paginaseleciona=='FIG6':
     fig,ax=plt.subplots(figsize=(10,7))
     x1 = [1,2,3,4]
     squad = [0.50,0.55,0.60,0.65]
-    plt.ylabel(r'$\beta$',fontsize=40,**csfont)
-    plt.yticks(fontsize=40,**csfont)
-    plt.xticks(x1,squad,fontsize=40,**csfont)
-    plt.xlabel(r'$\alpha$',fontsize=40,**csfont)
+    ax.set_ylabel(r'$\beta$',fontsize=40,**csfont)
+    ax.set_yticks(fontsize=40,**csfont)
+    ax.set_xticks(x1,squad,fontsize=40,**csfont)
+    ax.set_xlabel(r'$\alpha$',fontsize=40,**csfont)
     ax.xaxis.set_tick_params(width=3)
     ax.yaxis.set_tick_params(width=3)
     for axis in ['top','bottom','left','right']:
