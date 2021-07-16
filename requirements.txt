@@ -8,3 +8,4 @@ fpdf==1.7.2
 latex==0.7.0
 streamlit==0.81.0
 jupyter-latex-envs==1.4.6
+!apt install cm-super
