@@ -87,6 +87,7 @@ if paginaseleciona=='FIG6':
     x1 = [1,2,3,4]
     squad = [0.50,0.55,0.60,0.65]
     plt.ylabel(r'$\beta$',fontsize=40)
+    plt.yticks(fontsize=40)
     plt.xticks(x1,squad,fontsize=40)
     plt.xlabel(r'$\alpha$',fontsize=40)
     ax.xaxis.set_tick_params(width=3)
