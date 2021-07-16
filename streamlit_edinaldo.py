@@ -12,7 +12,7 @@ import scipy
 from scipy import stats
 from sklearn.neighbors import KernelDensity
 import matplotlib.gridspec as grid_spec
-
+import latex
 
 
 EDIALL=pd.read_csv('EDIALL_old.csv',sep=';')
