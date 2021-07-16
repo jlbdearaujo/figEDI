@@ -30,6 +30,11 @@ trans = st.sidebar.slider('Nível de transparência', 0.0, 1.0, 0.5)
 
 st.sidebar.write('O nível de transparência ajuda a ver o comportameto das figuras 3a e 3b')
 
+plt.rcParams.update({'font.size': 22})
+plt.rc('font',**{'family':'serif','serif':['Times']})
+plt.rc('font',**{'family':'serif','serif':['Times']})
+plt.rc('text', usetex=True)
+
 
 EDIALL=EDIALL.astype({'CLUSTER':'int64'})
 
