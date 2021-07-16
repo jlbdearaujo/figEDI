@@ -1,8 +1,4 @@
 altair==4.1.0
-backports.tempfile==1.0
-gitdb==4.0.7
-GitPython==3.1.14
-googlemaps==4.4.5
 matplotlib==3.4.1
 numpy==1.19.1
 pandas==1.2.5
@@ -11,3 +7,4 @@ scipy==1.5.4
 fpdf==1.7.2
 latex==0.7.0
 streamlit==0.81.0
+jupyter-latex-envs==1.4.6
