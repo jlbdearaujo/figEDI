@@ -31,10 +31,6 @@ trans = st.sidebar.slider('Nível de transparência', 0.0, 1.0, 0.5)
 
 st.sidebar.write('O nível de transparência ajuda a ver o comportameto das figuras 3a e 3b')
 
-plt.rcParams.update({'font.size': 22})
-plt.rc('font',**{'family':'serif','serif':['Times']})
-plt.rc('font',**{'family':'serif','serif':['Times']})
-plt.rc('text', usetex=True)
 
 EDIALL=EDIALL.astype({'CLUSTER':'int64'})
 
@@ -97,24 +93,14 @@ if paginaseleciona=='FIG6':
     for axis in ['top','bottom','left','right']:
         ax.spines[axis].set_linewidth(3)
     #bp=plt.boxplot(data_to_plot,labels=squad)
-    ax.plot([1,2,3],[10,20,30])
+    plt.plot([1,2,3],[10,20,30])
     st.pyplot(fig)
 
     
     export_as_pdf = st.button("Se quiser fazer o download dessa figura")
     
 
-    if export_as_pdf:
-        st.write('ESPERE UM POUCO, JÁ JÁ  O LINK SERÁ CRIADO')
-        pdf = FPDF(orientation = 'L', unit = 'in', format=(7,10))
-        pdf.add_page()
-        with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
-
-                plt.savefig(tmpfile.name,dpi=300,bbox_inches='tight')
-                pdf.image(tmpfile.name, 0, 0, 10, 7)
-                filename=pdf.output(dest="S").encode("latin-1")
-        html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
-        st.markdown(html, unsafe_allow_html=True)
+    
 
 
 
