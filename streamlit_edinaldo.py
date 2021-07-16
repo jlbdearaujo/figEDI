@@ -12,6 +12,7 @@ import scipy
 from scipy import stats
 from sklearn.neighbors import KernelDensity
 import matplotlib.gridspec as grid_spec
+from matplotlib import rc
 import latex
 
 
