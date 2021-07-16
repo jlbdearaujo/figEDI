@@ -433,7 +433,7 @@ if paginaseleciona=='FIG6':
     squad = [0.50,0.55,0.60,0.65]
     ax.set_ylabel(r'$\beta$',fontsize=40)
     plt.xticks(x1,squad,fontsize=40)
-    plt.set_xlabel(r'$\alpha$',fontsize=40)
+    ax.set_xlabel(r'$\alpha$',fontsize=40)
     ax.xaxis.set_tick_params(width=3)
     ax.yaxis.set_tick_params(width=3)
     for axis in ['top','bottom','left','right']:
