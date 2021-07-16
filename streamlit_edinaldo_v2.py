@@ -97,7 +97,7 @@ if paginaseleciona=='FIG6':
     for axis in ['top','bottom','left','right']:
         ax.spines[axis].set_linewidth(3)
     #bp=plt.boxplot(data_to_plot,labels=squad)
-    df=pd.DataFrame('A':[1,2,3],'B':[10,20,30])
+    df=pd.DataFrame({'A':[1,2,3],'B':[10,20,30]})
     ax.plot(df.A,df.B)
     st.pyplot(fig)
 
