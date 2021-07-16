@@ -1,10 +1,7 @@
-import base64
+
 import streamlit as st
 import pandas as pd
 import numpy as np
-from tempfile import NamedTemporaryFile
-import fpdf
-from fpdf import FPDF
 import scipy
 from scipy import stats
 from sklearn.neighbors import KernelDensity
