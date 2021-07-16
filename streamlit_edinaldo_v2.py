@@ -226,7 +226,7 @@ if paginaseleciona=='FIG3b':
             ax_objs[-1].fill_between(x_d, np.exp(logprob)/np.exp(logprob).max(), alpha=trans,color=coresC['EXP'])
 
         #d1
-        x1=np.array(d1[d1['α'] == country].stdP)
+        x1=np.array(d1[d1['a'] == country].stdP)
         if (len(x1)!=0):
             kde = KernelDensity(bandwidth=1.0, kernel='gaussian')
             kde.fit(x1[:, None])
