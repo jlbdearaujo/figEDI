@@ -53,11 +53,11 @@ if paginaseleciona=='FIG6':
     st.write('Espere um pouco, a figura pode demorar a renderizar')
 
     fig,ax=plt.subplots(figsize=(10,7))
-    x1 = [1,2,3,4]
   
     for axis in ['top','bottom','left','right']:
         ax.spines[axis].set_linewidth(3)
-    ax.plot([1,2,3],[10,20,30])
+    df=pd.DataFrame({'A':[1,2,3],'B':[10,20,30]})
+    df.plot('A','B')
     st.pyplot(fig)
 
     
