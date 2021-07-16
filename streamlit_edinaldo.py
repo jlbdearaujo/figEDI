@@ -12,13 +12,10 @@ import scipy
 from scipy import stats
 from sklearn.neighbors import KernelDensity
 import matplotlib.gridspec as grid_spec
-from matplotlib import rc
+
 import latex
 
-rc('font',{'family':'sans-serif','sans-serif':['Helvetica']})
-#for Palatino and other serif fonts use:
-#rc('font',{'family':'serif','serif':['Palatino']})
-rc('text', usetex=True)
+
 
 
 EDIALL=pd.read_csv('EDIALL_old.csv',sep=';')
@@ -434,9 +431,9 @@ if paginaseleciona=='FIG6':
     fig,ax=plt.subplots(figsize=(10,7))
     x1 = [1,2,3,4]
     squad = [0.50,0.55,0.60,0.65]
-    plt.ylabel(r'$\beta$',fontsize=40)
+    plt.ylabel(r'$\beta $',fontsize=40)
     plt.xticks(x1,squad,fontsize=40)
-    plt.xlabel(r'$\alpha$',fontsize=40)
+    plt.xlabel(r'$\alpha $',fontsize=40)
     ax.xaxis.set_tick_params(width=3)
     ax.yaxis.set_tick_params(width=3)
     for axis in ['top','bottom','left','right']:
