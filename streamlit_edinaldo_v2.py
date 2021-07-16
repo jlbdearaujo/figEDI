@@ -79,7 +79,7 @@ if paginaseleciona=='FIG3a':
     plt.rcParams.update({'font.size': 40})
 
     data=EDIALL[(EDIALL['a']==0.5)|(EDIALL['a']==0.6)|(EDIALL['a']==0.7)|(EDIALL['a']==0.8)|(EDIALL['a']==0.9)|(EDIALL['a']==1.0)].copy()
-    countries = [x for x in np.unique(data[a'])]
+    countries = [x for x in np.unique(data['a'])]
     #countries=[0.5]
     colors = ['#0000ff', '#3300cc', '#660099', '#990066', '#cc0033','#cc0033']
 
