@@ -75,28 +75,9 @@ if paginaseleciona=='NENHUMA':
 
 if paginaseleciona=='FIG6':
 
-    st.title(paginaseleciona)
-    st.write(r'$\beta$')
-
-    st.write('Espere um pouco, a figura pode demorar a renderizar')
-
-
-    plt.rcParams.update({'font.size': 40})
-
-    c1aux=EDIALL[EDIALL['CLUSTER']==1].copy()
-    data_to_plot=[c1aux[c1aux['α']==0.5]['expP'].values,c1aux[c1aux['α']==0.55]['expP'].values,c1aux[c1aux['α']==0.6]['expP'].values,c1aux[c1aux['α']==0.65]['expP'].values]
-   
+  
     fig,ax=plt.subplots(figsize=(10,7))
-    x1 = [1,2,3,4]
-    squad = [0.50,0.55,0.60,0.65]
-    plt.ylabel(r'$\beta$',fontsize=40)
-    plt.xticks(x1,squad,fontsize=40)
-    plt.xlabel(r'$\alpha$',fontsize=40)
-    ax.xaxis.set_tick_params(width=3)
-    ax.yaxis.set_tick_params(width=3)
-    for axis in ['top','bottom','left','right']:
-        ax.spines[axis].set_linewidth(3)
-    #bp=plt.boxplot(data_to_plot,labels=squad)
+   
     df=pd.DataFrame({'A':[1,2,3],'B':[10,20,30]})
     ax.plot(df.A,df.B)
     st.pyplot(fig)
@@ -104,18 +85,6 @@ if paginaseleciona=='FIG6':
     
     export_as_pdf = st.button("Se quiser fazer o download dessa figura")
     
-
-    if export_as_pdf:
-        st.write('ESPERE UM POUCO, JÁ JÁ  O LINK SERÁ CRIADO')
-        pdf = FPDF(orientation = 'L', unit = 'in', format=(7,10))
-        pdf.add_page()
-        with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
-
-                plt.savefig(tmpfile.name,dpi=300,bbox_inches='tight')
-                pdf.image(tmpfile.name, 0, 0, 10, 7)
-                filename=pdf.output(dest="S").encode("latin-1")
-        html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
-        st.markdown(html, unsafe_allow_html=True)
 
 
 
