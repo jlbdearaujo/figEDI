@@ -76,15 +76,15 @@ if paginaseleciona=='NENHUMA':
 if paginaseleciona=='FIG6':
 
     st.title(paginaseleciona)
-    st.write(r'$\beta$')
+    #st.write(r'$\beta$')
 
     st.write('Espere um pouco, a figura pode demorar a renderizar')
 
 
-    plt.rcParams.update({'font.size': 40})
+    #plt.rcParams.update({'font.size': 40})
 
-    c1aux=EDIALL[EDIALL['CLUSTER']==1].copy()
-    data_to_plot=[c1aux[c1aux['α']==0.5]['expP'].values,c1aux[c1aux['α']==0.55]['expP'].values,c1aux[c1aux['α']==0.6]['expP'].values,c1aux[c1aux['α']==0.65]['expP'].values]
+    #c1aux=EDIALL[EDIALL['CLUSTER']==1].copy()
+    #data_to_plot=[c1aux[c1aux['α']==0.5]['expP'].values,c1aux[c1aux['α']==0.55]['expP'].values,c1aux[c1aux['α']==0.6]['expP'].values,c1aux[c1aux['α']==0.65]['expP'].values]
    
     fig,ax=plt.subplots(figsize=(10,7))
     x1 = [1,2,3,4]
