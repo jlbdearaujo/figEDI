@@ -57,7 +57,7 @@ if paginaseleciona=='FIG6':
   
     for axis in ['top','bottom','left','right']:
         ax.spines[axis].set_linewidth(3)
-    plt.plot([1,2,3],[10,20,30])
+    ax.plot([1,2,3],[10,20,30])
     st.pyplot(fig)
 
     
