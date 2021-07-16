@@ -415,8 +415,7 @@ if paginaseleciona=='FIG3b':
 if paginaseleciona=='FIG6':
 
     st.title(paginaseleciona)
-    st.write(r'$\beta$')
-
+   
     st.write('Espere um pouco, a figura pode demorar a renderizar')
 
 
@@ -437,23 +436,11 @@ if paginaseleciona=='FIG6':
         ax.spines[axis].set_linewidth(3)
     #bp=plt.boxplot(data_to_plot,labels=squad)
     plt.plot([1,2,3,4],[10,20,30,40])
-    #st.pyplot(fig)
+    st.pyplot(fig)
 
     
-    export_as_pdf = st.button("Se quiser fazer o download dessa figura")
-    
 
-    if export_as_pdf:
-        st.write('ESPERE UM POUCO, JÁ JÁ  O LINK SERÁ CRIADO')
-        pdf = FPDF(orientation = 'L', unit = 'in', format=(7,10))
-        pdf.add_page()
-        with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
-
-                plt.savefig(tmpfile.name,dpi=300,bbox_inches='tight')
-                pdf.image(tmpfile.name, 0, 0, 10, 7)
-                filename=pdf.output(dest="S").encode("latin-1")
-        html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
-        st.markdown(html, unsafe_allow_html=True)
+   
 
 
 
