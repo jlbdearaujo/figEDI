@@ -436,7 +436,7 @@ if paginaseleciona=='FIG6':
     for axis in ['top','bottom','left','right']:
         ax.spines[axis].set_linewidth(3)
     #bp=plt.boxplot(data_to_plot,labels=squad)
-    plt.plot([1,2,3,4],[10,20,30])
+    plt.plot([1,2,3,4],[10,20,30,40])
     st.pyplot(fig)
 
     
