@@ -3,15 +3,12 @@ import base64
 import streamlit as st
 import pandas as pd
 import numpy as np
-from matplotlib.path import Path
-import matplotlib.patches as patches
 from tempfile import NamedTemporaryFile
 import fpdf
 from fpdf import FPDF
 import scipy
 from scipy import stats
 from sklearn.neighbors import KernelDensity
-import matplotlib.gridspec as grid_spec
 import matplotlib.pyplot as plt
 
 
