@@ -15,6 +15,11 @@ import matplotlib.gridspec as grid_spec
 from matplotlib import rc
 import latex
 
+rc('font',{'family':'sans-serif','sans-serif':['Helvetica']})
+#for Palatino and other serif fonts use:
+#rc('font',{'family':'serif','serif':['Palatino']})
+rc('text', usetex=True)
+
 
 EDIALL=pd.read_csv('EDIALL_old.csv',sep=';')
 
