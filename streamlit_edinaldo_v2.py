@@ -147,7 +147,45 @@ if paginaseleciona=='FIG4':
         st.markdown(html, unsafe_allow_html=True)
     
     
-    
+if paginaseleciona=='FIG5':
+
+    st.title(paginaseleciona)
+    st.write(r'k=[500,1000] e $\gamma$=[50,100]')
+
+    st.write('Espere um pouco, a figura pode demorar a renderizar')
+
+    fig,ax=plt.subplots(figsize=(10,7))
+    ax.set_ylabel(r'P($\alpha$)',fontsize=30)
+    ax.set_xlabel(r'$\alpha$',fontsize=30)
+    ax.bar(apl,ccPL,width=1.0*(0.05/2),color=coresC['PL'],label='PL',alpha=trans)
+    ax.bar(aexp,ccEXP,width=1.0*(0.05/2),color=coresC['EXP'],label='EXP',alpha=trans)
+
+
+    x=dfaux[dfaux['CLUSTER']==1]['a'].copy()
+    y=dfaux[dfaux['CLUSTER']==0]['a'].copy()
+    kdex = stats.gaussian_kde(x,bw_method=0.4)
+    kdey = stats.gaussian_kde(y,bw_method=0.2)
+    xx = np.linspace(0.5,1.0, 1000)
+    yy= np.linspace(0.5,1.0, 1000)
+    plt.xticks(np.linspace(0.5,1.0,6),rotation=0,fontsize=30)
+    plt.yticks(fontsize=30)
+    ax.legend(loc=4,shadow=True,fontsize=30)
+
+    st.pyplot(fig)
+
+    export_as_pdf = st.button("Se quiser fazer o download dessa figura")
+
+    if export_as_pdf:
+        st.write('ESPERE UM POUCO, JÁ JÁ  O LINK SERÁ CRIADO')
+        pdf = FPDF(orientation = 'L', unit = 'in', format=(7,10))
+        pdf.add_page()
+        with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
+
+                plt.savefig(tmpfile.name,dpi=300)
+                pdf.image(tmpfile.name, 0, 0, 10, 7)
+                filename=pdf.output(dest="S").encode("latin-1")
+        html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
+        st.markdown(html, unsafe_allow_html=True)    
     
     
 
