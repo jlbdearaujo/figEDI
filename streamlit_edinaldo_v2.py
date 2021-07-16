@@ -58,7 +58,9 @@ if corexp=='':
 
 coresC={'PL':corpl,'EXP':corexp}
 
-
+def create_download_link(val, filename):
+    b64 = base64.b64encode(val)  # val looks like b'...'
+    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Arroxe no download!!!</a>'
 
 
 if paginaseleciona=='NENHUMA':
