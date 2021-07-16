@@ -2,15 +2,12 @@ import base64
 import streamlit as st
 import pandas as pd
 import numpy as np
-from matplotlib.path import Path
-import matplotlib.patches as patches
 from tempfile import NamedTemporaryFile
 import fpdf
 from fpdf import FPDF
 import scipy
 from scipy import stats
 from sklearn.neighbors import KernelDensity
-import matplotlib.gridspec as grid_spec
 import matplotlib.pyplot as plt
 
 
@@ -39,16 +36,13 @@ if corexp=='':
 
 coresC={'PL':corpl,'EXP':corexp}
 
-def create_download_link(val, filename):
-    b64 = base64.b64encode(val)  # val looks like b'...'
-    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Arroxe no download!!!</a>'
-
 
 if paginaseleciona=='NENHUMA':
     st.title('NENHUMA FIGURA FOI SELECIONADA')
 
     st.write(" Por favor, selecione no menu ao lado a figura que queira editar e suas respectivas cores.")
-
+    plt.plot([1,2,3],[10,20,30])
+    st.pyplot(fig)
 
 
 if paginaseleciona=='FIG6':
@@ -60,21 +54,14 @@ if paginaseleciona=='FIG6':
 
     fig,ax=plt.subplots(figsize=(10,7))
     x1 = [1,2,3,4]
-    squad = [0.50,0.55,0.60,0.65]
-    #plt.ylabel(r'$\beta$',fontsize=40)
-    #plt.xticks(x1,squad,fontsize=40)
-    #plt.xlabel(r'$\alpha$',fontsize=40)
-    #ax.xaxis.set_tick_params(width=3)
-    #ax.yaxis.set_tick_params(width=3)
+  
     for axis in ['top','bottom','left','right']:
         ax.spines[axis].set_linewidth(3)
     plt.plot([1,2,3],[10,20,30])
     st.pyplot(fig)
 
     
-    export_as_pdf = st.button("Se quiser fazer o download dessa figura")
-    
-
+ 
     
 
 
