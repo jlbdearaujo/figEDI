@@ -15,7 +15,6 @@ import matplotlib.gridspec as grid_spec
 import matplotlib.pyplot as plt
 
 
-EDIALL=pd.read_csv('EDIALL_old.csv',sep=';')
 
 st.sidebar.title('FIGURAS DO CLAÚDIO LUCAS')
 st.sidebar.write('Jorge Luiz')
