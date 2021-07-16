@@ -69,7 +69,7 @@ if paginaseleciona=='NENHUMA':
 if paginaseleciona=='FIG6':
 
   
-st.title(paginaseleciona)
+    st.title(paginaseleciona)
     st.write(r'$\beta$')
 
     st.write('Espere um pouco, a figura pode demorar a renderizar')
